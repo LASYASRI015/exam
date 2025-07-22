@@ -1,38 +1,42 @@
 pipeline{
-agent any
-stages{
-stage('compile'){
-steps{
-echo "compiled Successfully";
+    agent any
+    stages{
+        stage('compile'){
+            steps{
+                echo"Compiled successfully";
+            }
+        }
+    stage('Junit'){
+        steps{
+            echo"JUnit test passedSuccessfully";
+    }
 }
+stage('Qualitycheck'){
+    steps{
+        echo"Quality Check passed successfully";
+    }
 }
-stage('JUnit'){
-steps{
-echo "Junit tested successfully";
-}
-}
-stage('quality check'){
-steps{
-echo "Quality check done successfullly";
-}
+stage('Deploy'){
+    steps{
+        echo"Deployed Successfully";
+    }
 }
 }
 post{
-always{
-echo "it always runs"
+    always{
+        echo"This will always run"
+    }
+    success{
+        echo"This will run on success"
+    }
+    failure{
+        echo"This will run on failure"
+    }
+    unstable{
+        echo "This will run only if the run is marked as Unstable"
+    }
+    changed{
+        echo"Pipe line changed"
+    }
 }
-success{
-echo "it runs only on success"
 }
-failure{
-echo "it runs on failure"
-}
-unstable{
-echo "it runs when run is unstable"
-}
-changed{
-echo "pipeline chnaged"
-}
-}
-}
-
